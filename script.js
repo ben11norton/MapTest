@@ -57,7 +57,7 @@ function animate() {
   requestAnimationFrame(animate);
 
   // Rotate the terrain slowly so you can see it in 3D
-  terrain.rotation.z += 0.002;
+  // terrain.rotation.z += 0.002;
 
   renderer.render(scene, camera);
 }
@@ -69,3 +69,19 @@ window.addEventListener('resize', () => {
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
 });
+
+function zoomOnMap(){
+ // Zoom in by moving the camera closer on Z axis
+  camera.position.z = Math.max(camera.position.z - 100, 10); // don't get too close, min 10
+
+  // Rotate the terrain a bit around Y axis (for a nice twist)
+  // terrain.rotation.y += 0.1;
+
+    terrain.rotation.x -= 0.7;
+
+  // Optional: update camera lookAt if you want to keep focus
+  camera.lookAt(0, 0, 0);
+
+  // Re-render immediately after change
+  renderer.render(scene, camera);
+}
